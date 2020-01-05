@@ -16,7 +16,7 @@ while(true){
 }
 ```
 LAWT will take care of closing the window for you, so it's okay to use a while(true) loop.
--
+***
 **LAWT also supports multiple windows -**
 ```java
 Window firstWindow = new Window(640, 480, "My window");
