@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -29,6 +30,7 @@ public class Window extends Canvas implements MouseListener, MouseWheelListener,
   private BufferedImage finalImg;
   public int fps = 60;
   public int step = 0;
+  public long timeStepMillis = 1000 / fps;
   
   public boolean mouseInWindow = false;
   public double mouseScrollTotal = 0;
@@ -80,8 +82,9 @@ public class Window extends Canvas implements MouseListener, MouseWheelListener,
     repaint();
     this.mouseButtonsClicked.clear();
     
-    try { Thread.sleep((1000 / this.fps)); } catch (InterruptedException e) { e.printStackTrace(); }
-     this.step++;
+    try { Thread.sleep((timeStepMillis)); } catch (InterruptedException e) { e.printStackTrace(); }
+    
+    this.step++;
   }
 
   public static void updateAll() {
@@ -95,8 +98,8 @@ public class Window extends Canvas implements MouseListener, MouseWheelListener,
 	
     this.defaultDrawCall.draw(g);
     
-    for (int i = 0; i < this.entities.size(); i++) {
-      Entity o = this.entities.get(i);
+    for (int i = 0; i < entities.size(); ++i) {
+      Entity o = entities.get(i);
       if(o.isOnScreen()) {
 	      g2.scale(getScaleFactor(), getScaleFactor());
 	      g2.translate(-cameraX, -cameraY);
@@ -122,11 +125,11 @@ public class Window extends Canvas implements MouseListener, MouseWheelListener,
   }
   
   public double getMouseX() {
-	  return getMousePosition().getX();
+	  return MouseInfo.getPointerInfo().getLocation().getX() - this.getLocationOnScreen().x;
   }
   
   public double getMouseY() {
-	  return getMousePosition().getY();
+	  return MouseInfo.getPointerInfo().getLocation().getY() - this.getLocationOnScreen().y;
   }
   
   public void setDrawCall(DrawCall d) {

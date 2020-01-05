@@ -34,8 +34,12 @@ public final class Util
 	  return Math.sqrt(Math.pow(x2 - x1, 2.0D) + Math.pow(y2 - y1, 2.0D));
   }
   
+  public static double fatan(double a) {
+	  return (Math.abs(1.5-a) < 0) ? 0.92*a - 0.13*a*a*a : Math.atan(a);
+  }
+  
   public static double angle(double x1, double y1, double x2, double y2) {
-	  double ang = Math.atan((y2 - y1) / (x2 - x1));
+	  double ang = fatan((y2 - y1) / (x2 - x1));
 	  if (x2 < x1) {
 		  ang += Math.PI;
 	  }
@@ -43,7 +47,7 @@ public final class Util
 		  ang = 0.0D;
 	  }
 	  return ang;
-  	}
+  }
   
   public static double smoothstep(double val){ return Math.pow(3*val, 2) - Math.pow(2*val, 3); }
   
