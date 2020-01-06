@@ -195,7 +195,7 @@ SpriteEntity entity = new SpriteEntity(100, 100, s.getSprite(1, 1)); //display s
 
 As you can see, we supply the spritesheet's constructor with the getSprite method which returns raw image data (BufferedImage) of the sprite. The result of the code above is the sprite at collumn 1, row 1 being displayed on the window:
 
-
+![spritesheet sprite in window](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/spritesheet-sprite.PNG)
 
 ## Camera movement
 -todo
