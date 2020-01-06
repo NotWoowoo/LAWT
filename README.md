@@ -48,11 +48,22 @@ Along with creating entities, there are some standard entities you can instantia
 * Text
 * ImageEntity
 
-The Circle, Square, and Line entities simply draw the corosponding geometric shapes they reperesent. The Text entity will draw a string of text to the window at its position. The ImageEntity displays an external image file at its position.
+The Circle, Square, and Line entities simply draw the corresponding geometric shapes they reperesent. The Text entity will draw a string of text to the window at its position. The ImageEntity displays an external image file at its position.
 
 The following will draw the string "Hello World!" at the position (100, 100) in the window -
 ```java
 Text message = new Text(100, 100, "Hello World!");
+```
+
+#### Switching windows
+Entities are automatically placed in the first created window upon creation. To change which window an Entity is in, use the setWindow method.
+
+```java
+Window firstWindow = new Window(640, 480, "My window");
+Window secondWindow = new Window(1280, 720, "My big window");
+
+Circle c = new Circle(100, 100, 50, Color.RED);
+c.setWindow(secondWindow);
 ```
 
 #### Creating custom entities
@@ -122,38 +133,38 @@ The result of creating many particle entities in a window is a neat simulation:
 ![image of particle simulation](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/particle-entity-simulation.PNG)
 
 ## Util
-If you poked around the source code, you might've noticed a Util class. This class contains various static fuctions for mostly mathematical opperations. These functions are avalible for you to use in your program. Some of the most useful ones are...
-- random(...)
+If you've poked around the source code, you might've noticed a Util class. This class contains various static fuctions for mostly mathematical opperations. These functions are avalible for you to use in your program. Some of the most useful ones are...
+- random(max)
   - generates a random number from 0 to max
 
-- random(...)
+- random(min, max)
   - generates a random number from min to max
   
-- wrap(...)
+- wrap(val, lowerBound, upperBound)
   - proportionally keeps a number in a range - if the range is 0 to 50, then 75 is set to 25, and 51 is set to 1
   
-- clamp(...)
+- clamp(val, lowerBound, upperBound)
   - keeps a number in a range by making it higher than *lowerBound*, and lower than *upperBound*
   
-- inRectangle(...) / inCircle(...)
+- inRectangle(x, y, x1, y1, x2, y2) / inCircle(x, y, centerX, centerY, radius)
   - determines if a point is inside a specified rectangle/circle
   
 - clamp(double val, double lowerBound, double upperBound)
   - keeps a number in a range by making it higher than *lowerBound*, and lower than *upperBound*
   
-- dist(...)
+- dist(x1, y1, x2, y1)
   - calculates the distance between two specified points
   
-- fatan(...)
+- fatan(arcLength)
   - fast version of atan
   
-- angle(...)
+- angle(x1, y1, x2, y2)
   - calculates the angle between two specified points
   
-- smoothstep(...)
+- smoothstep(val)
   - smoothly interpolates between 0 and 1 (argument expected to be between 0 and 1) - [graph example](https://www.desmos.com/calculator/xton9cizsw)
   
-- lerp(...)
+- lerp(a, b, amt)
   - linearly interpolates between a and b by amt - [graph example](https://www.desmos.com/calculator/pia5oewqgz)
 
 ## Sprites and Images
@@ -180,20 +191,20 @@ img.scaleBy(1.5, 1.5);
 You can also supply one parameter for both axis: scaleBy(10, 10) is the same as scaleBy(10)
 
 ### Spritesheets
-Loading sprites from seperate image files is fine, but if you plan on using many diferent sprites, then it is far more efficient to load one image file that contains all the sprites you want to use, and cut all the sprites out of it. LAWT already does this for you, so loading many sprites from one image file (a spritesheet) is a simple process.
+Loading sprites from separate image files is fine, but if you plan on using many diferent sprites, then it is far more efficient to load one image file that contains all the sprites you want to use, and cut all the sprites out of it. LAWT already does this for you, so loading many sprites from one image file (a spritesheet) is a simple process.
 
 First you must import a spritesheet file via a Spritesheet object. The constructor for Spritesheet is supplied a filepath, and a sprite size in pixels for both dimentions. For this example, i'll use this sheet:
 
 ![sheet example](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/sheet.png)
 
-Once you've imported a sheet, you can use the getSprite method to get the sprite at a row, and collumn (collumn is supplied first).
+Once you've imported a sheet, you can use the getSprite method to get the sprite at a row, and column (column is supplied first).
 
 ```java
 Spritesheet s = new Spritesheet("resources/sheet.png", 32); //load 32x32 sprites from sheet.png		
-SpriteEntity entity = new SpriteEntity(100, 100, s.getSprite(1, 1)); //display sprite in collumn 1, row 1 at position 100, 100 in window
+SpriteEntity entity = new SpriteEntity(100, 100, s.getSprite(1, 1)); //display sprite in column 1, row 1 at position 100, 100 in window
 ```
 
-As you can see, we supply the spritesheet's constructor with the getSprite method which returns raw image data (BufferedImage) of the sprite. The result of the code above is the sprite at collumn 1, row 1 being displayed on the window:
+As you can see, we supply the spritesheet's constructor with the getSprite method which returns raw image data (BufferedImage) of the sprite. The result of the code above is the sprite at column 1, row 1 being displayed on the window:
 
 ![spritesheet sprite in window](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/spritesheet-sprite.PNG)
 
@@ -201,11 +212,11 @@ As you can see, we supply the spritesheet's constructor with the getSprite metho
 -todo
 
 ## Draw calls
-Remember when i said all drawing is done from objects? Well, that isn't entirely true. A window does, indeed, draw every entity object instance. However, there are some cases where you'll want to draw independent from an entity. In cases like these, you'll want to impliment your own drawing function via the DrawCall interface. Every window has its own draw call function called every time said window is updated. By default, a window's draw call will enable antialiasing, and draw a black background for every frame. If you want to change this default behaviour, then you'll have to set a window's draw call to your own custom draw call function -
+Remember when i said all drawing is done from objects? Well, that isn't entirely true. A window does, indeed, draw every entity object instance. However, there are some cases where you'll want to draw independent from an entity. In cases like these, you'll want to implement your own drawing function via the DrawCall interface. Every window has its own draw call function called every time said window is updated. By default, a window's draw call will enable antialiasing, and draw a black background for every frame. If you want to change this default behavior, then you'll have to set a window's draw call to your own custom draw call function -
 ```java
 Window w = new Window(1280, 720, "cool window"); //create the window
 
-//Impliment a draw call that draws a red oval background
+//Implement a draw call that draws a red oval background
 Window.DrawCall myDrawCall = (Graphics g) -> {
 	g.setColor(Color.RED);
 	g.fillOval(0, 0, w.getWidth(), w.getHeight());
