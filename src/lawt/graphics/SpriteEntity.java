@@ -33,9 +33,17 @@ public class SpriteEntity extends Entity{
 	public void scaleTo(int dWidth, int dHeight) {
 		img = Transform.scaleTo(img, dWidth, dHeight);
 	}
+
+	public void scaleTo(int d) {
+		img = Transform.scaleTo(img, d, d);
+	}
 	
 	public void scaleBy(double fWidth, double fHeight) {
 		img = Transform.scaleBy(img, fWidth, fHeight);
+	}
+	
+	public void scaleBy(double f) {
+		img = Transform.scaleBy(img, f, f);
 	}
 	
 	@Override
