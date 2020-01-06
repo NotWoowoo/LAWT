@@ -14,7 +14,7 @@ public class Square extends Entity{
 	public Square(double x, double y, double size, Color col) {
 		super(x, y, col);
 		setsize(size);
-		isOutline(false);
+		setDrawOutline(false);
 	}
 
 	@Override
@@ -44,5 +44,5 @@ public class Square extends Entity{
 
 	public void setsize(double size) { this.size = size; }
 	
-	public void isOutline(boolean b){ drawOutline = b; }
+	public void setDrawOutline(boolean b){ drawOutline = b; }
 }

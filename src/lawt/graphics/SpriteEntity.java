@@ -11,14 +11,18 @@ import javax.imageio.ImageIO;
 import lawt.engine.Entity;
 import lawt.engine.Util;
 
-public class ImageEntity extends Entity{
-
-	private BufferedImage img;
-	private File imgFile;
+public class SpriteEntity extends Entity{
 	
-	public ImageEntity(double x, double y, String filename) {
+	private BufferedImage img;
+
+	public SpriteEntity(double x, double y, BufferedImage sprite) {
 		super(x, y, Color.WHITE);
-		imgFile = new File(filename);
+		img = sprite;
+	}
+	
+	public SpriteEntity(double x, double y, String filepath) {
+		super(x, y, Color.WHITE);
+		File imgFile = new File(filepath);
 		try {
 			img = ImageIO.read(imgFile);
 		} catch (IOException e) {
@@ -26,14 +30,27 @@ public class ImageEntity extends Entity{
 		}
 	}
 	
+	public void scaleTo(int dWidth, int dHeight) {
+		img = Transform.scaleTo(img, dWidth, dHeight);
+	}
+	
+	public void scaleBy(double fWidth, double fHeight) {
+		img = Transform.scaleBy(img, fWidth, fHeight);
+	}
+	
+	@Override
 	public boolean isOnScreen() {
+		if(img != null) {
 		  return Util.inRectangle(
 				  x, y,
 				  currentWindow.getCameraX() - img.getWidth(),
 				  currentWindow.getCameraY() - img.getHeight(),
 				  currentWindow.getCameraX() + currentWindow.getWidth()/currentWindow.getScaleFactor(),
 				  currentWindow.getCameraY() + currentWindow.getHeight()/currentWindow.getScaleFactor());
-	  }
+		}else {
+			return false;
+		}
+	}
 
 	@Override
 	public void update() {
@@ -44,5 +61,5 @@ public class ImageEntity extends Entity{
 	public void draw(Graphics2D g) {
 		g.drawImage(img, (int)x, (int)y, null);
 	}
-	
+
 }

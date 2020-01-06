@@ -14,7 +14,7 @@ public class Circle extends Entity{
 	public Circle(double x, double y, double radius, Color col) {
 		super(x, y, col);
 		setRadius(radius);
-		isOutline(false);
+		setDrawOutline(false);
 	}
 
 	@Override
@@ -44,5 +44,5 @@ public class Circle extends Entity{
 
 	public void setRadius(double radius) { this.radius = radius; }
 	
-	public void isOutline(boolean b){ drawOutline = b; }
+	public void setDrawOutline(boolean b){ drawOutline = b; }
 }
