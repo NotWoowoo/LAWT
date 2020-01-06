@@ -119,7 +119,50 @@ public class Particle extends Entity{
 }
 ```
 The result of creating many particle entities in a window is a neat simulation:
+![image of particle simulation](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/particle-entity-simulation.PNG)
 
+## Util
+If you poked around the source code, you might've noticed a Util class. This class contains various static fuctions for mostly mathematical opperations. These functions are avalible for you to use in your program. Some of the most useful ones are...
+- random(...)
+  - generates a random number from 0 to max
+
+- random(...)
+  - generates a random number from min to max
+  
+- wrap(...)
+  - proportionally keeps a number in a range - if the range is 0 to 50, then 75 is set to 25, and 51 is set to 1
+  
+- clamp(...)
+  - keeps a number in a range by making it higher than *lowerBound*, and lower than *upperBound*
+  
+- inRectangle(...) / inCircle(...)
+  - determines if a point is inside a specified rectangle/circle
+  
+- clamp(double val, double lowerBound, double upperBound)
+  - keeps a number in a range by making it higher than *lowerBound*, and lower than *upperBound*
+  
+- dist(...)
+  - calculates the distance between two specified points
+  
+- fatan(...)
+  - fast version of atan
+  
+- angle(...)
+  - calculates the angle between two specified points
+  
+- smoothstep(...)
+  - smoothly interpolates between 0 and 1 (argument expected to be between 0 and 1) - [graph example](https://www.desmos.com/calculator/xton9cizsw)
+  
+- lerp(...)
+  - linearly interpolates between a and b by amt - [graph example](https://www.desmos.com/calculator/pia5oewqgz)
+
+## Sprites
+-todo
+### Spritesheets
+-todo
+
+## Camera movement
+-todo
 
 ## Draw calls
 Remember when i said all drawing is done from objects? Well, that isn't entirely true. A window does, indeed, draw every entity object instance. However, there are some cases where you'll want to draw independent from an entity. In cases like these, you'll want to impliment your own drawing function via the DrawCall interface. Every window has its own draw call function called every time said window is updated. By default, a window's draw call will enable antialiasing, and draw a black background for every frame. If you want to change this default behaviour, then you'll have to set a window's draw call to your own custom draw call function -
