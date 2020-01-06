@@ -180,20 +180,22 @@ img.scaleBy(1.5, 1.5);
 You can also supply one parameter for both axis: scaleBy(10, 10) is the same as scaleBy(10)
 
 ### Spritesheets
-Loading sprites from seperate image files is fine, but if you plan on using many diferent sprites, then it is far more efficient to load one image file that contains all the sprites, and cut all the sprites out of it. LAWT already does this for you, so loading many sprites from one image file (a spritesheet) is a simple process.
+Loading sprites from seperate image files is fine, but if you plan on using many diferent sprites, then it is far more efficient to load one image file that contains all the sprites you want to use, and cut all the sprites out of it. LAWT already does this for you, so loading many sprites from one image file (a spritesheet) is a simple process.
 
-First you must import a spritesheet file via a Spritesheet object. The constructor for Spritesheet is supplied a filepath, and a sprite size in pixels. For this example, i'll use this sheet
+First you must import a spritesheet file via a Spritesheet object. The constructor for Spritesheet is supplied a filepath, and a sprite size in pixels for both dimentions. For this example, i'll use this sheet:
 
 ![sheet example](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/sheet.png)
 
-Once you have imported a sheet, you can use the getSprite method to get the sprite at a row, and collumn (collumn is supplied first).
+Once you've imported a sheet, you can use the getSprite method to get the sprite at a row, and collumn (collumn is supplied first).
 
 ```java
 Spritesheet s = new Spritesheet("resources/sheet.png", 32); //load 32x32 sprites from sheet.png		
 SpriteEntity entity = new SpriteEntity(100, 100, s.getSprite(1, 1)); //display sprite in collumn 1, row 1 at position 100, 100 in window
 ```
 
--to be continuted
+As you can see, we supply the spritesheet's constructor with the getSprite method which returns raw image data (BufferedImage) of the sprite. The result of the code above is the sprite at collumn 1, row 1 being displayed on the window:
+
+
 
 ## Camera movement
 -todo
