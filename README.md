@@ -157,7 +157,25 @@ If you poked around the source code, you might've noticed a Util class. This cla
   - linearly interpolates between a and b by amt - [graph example](https://www.desmos.com/calculator/pia5oewqgz)
 
 ## Sprites and Images
--todo
+Displaying an image is just as straightforward as displaying text and shapes. First, you need an external image file in your project directory, then you can simply create a SpriteEntity object to display that image -
+
+```java
+//Creates and displays the image stored in "resources/Img.png" at the position (100, 100) in the window
+SpriteEntity img = new SpriteEntity(100, 100, "resources/Img.png");
+```
+
+You can manipulate SpriteEntity object like any other entity, with the added feature of resizing the image using scaleTo and scaleBy -
+```java
+SpriteEntity img = new SpriteEntity(100, 100, "resources/Img.png");
+img.scaleBy(1.5, 1.5);
+```
+
+**The difference between scaleTo and scaleBy**
+- scaleTo(int width, int height)
+  - rescales an image to the dimentions specified by width, and height in pixels
+  
+- scaleBy(double width, double height)
+  - rescales an image to its original dimentions multiplied by width, and height in the respective axis - (100 x 100) -> scaleBy(1.5, 1.6) -> (150 x 160)
 
 ### Spritesheets
 -todo
