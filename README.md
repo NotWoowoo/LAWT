@@ -176,9 +176,21 @@ img.scaleBy(1.5, 1.5);
   
 - scaleBy(double width, double height)
   - rescales an image to its original dimentions multiplied by width, and height in the respective axis - (100 x 100) -> scaleBy(1.5, 1.6) -> (150 x 160)
+  
+You can also supply one parameter for both axis: scaleBy(10, 10) is the same as scaleBy(10)
 
 ### Spritesheets
--todo
+Loading sprites from seperate image files is fine, but if you plan on using many diferent sprites, then it is far more efficient to load one image file that contains all the sprites, and cut all the sprites out of it. LAWT already does this for you, so loading many sprites from one image file (a spritesheet) is a simple process.
+
+First you must import a spritesheet file via a Spritesheet object. The constructor for Spritesheet is supplied a filepath, and a sprite size in pixels. For this example, i'll use this sheet [sheet example](...)
+
+Once you have imported a sheet, you can use the getSprite method to get the sprite at a row, and collumn (collumn is supplied first).
+
+```java
+Spritesheet s = new Spritesheet("resources/sheet.png", 32); //load 32x32 sprites from sheet.png		
+SpriteEntity entity = new SpriteEntity(100, 100, s.getSprite(1, 1)); //display sprite in collumn 1, row 1 at position 100, 100 in window
+```
+The result of this code is 
 
 ## Camera movement
 -todo
