@@ -182,7 +182,9 @@ You can also supply one parameter for both axis: scaleBy(10, 10) is the same as 
 ### Spritesheets
 Loading sprites from seperate image files is fine, but if you plan on using many diferent sprites, then it is far more efficient to load one image file that contains all the sprites, and cut all the sprites out of it. LAWT already does this for you, so loading many sprites from one image file (a spritesheet) is a simple process.
 
-First you must import a spritesheet file via a Spritesheet object. The constructor for Spritesheet is supplied a filepath, and a sprite size in pixels. For this example, i'll use this sheet [sheet example](...)
+First you must import a spritesheet file via a Spritesheet object. The constructor for Spritesheet is supplied a filepath, and a sprite size in pixels. For this example, i'll use this sheet
+
+![sheet example](https://raw.githubusercontent.com/NotWoowoo/LAWT/master/sheet.png)
 
 Once you have imported a sheet, you can use the getSprite method to get the sprite at a row, and collumn (collumn is supplied first).
 
@@ -190,7 +192,8 @@ Once you have imported a sheet, you can use the getSprite method to get the spri
 Spritesheet s = new Spritesheet("resources/sheet.png", 32); //load 32x32 sprites from sheet.png		
 SpriteEntity entity = new SpriteEntity(100, 100, s.getSprite(1, 1)); //display sprite in collumn 1, row 1 at position 100, 100 in window
 ```
-The result of this code is 
+
+-to be continuted
 
 ## Camera movement
 -todo
