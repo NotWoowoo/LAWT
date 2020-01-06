@@ -156,8 +156,9 @@ If you poked around the source code, you might've noticed a Util class. This cla
 - lerp(...)
   - linearly interpolates between a and b by amt - [graph example](https://www.desmos.com/calculator/pia5oewqgz)
 
-## Sprites
+## Sprites and Images
 -todo
+
 ### Spritesheets
 -todo
 
