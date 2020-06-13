@@ -149,9 +149,6 @@ If you've poked around the source code, you might've noticed a Util class. This 
 - inRectangle(x, y, x1, y1, x2, y2) / inCircle(x, y, centerX, centerY, radius)
   - determines if a point is inside a specified rectangle/circle
   
-- clamp(double val, double lowerBound, double upperBound)
-  - keeps a number in a range by making it higher than *lowerBound*, and lower than *upperBound*
-  
 - dist(x1, y1, x2, y1)
   - calculates the distance between two specified points
   
